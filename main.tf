@@ -1,4 +1,4 @@
-module "aft_pipeline" {
+module "aft" {
   source = "github.com/aws-ia/terraform-aws-control_tower_account_factory"
   
   # Terraform distribution must be "tfc" or "tfe" for OIDC
