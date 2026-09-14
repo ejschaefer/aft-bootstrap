@@ -10,6 +10,7 @@ module "aft" {
   terraform_oidc_integration  = true
   terraform_oidc_aws_audience = "aws.workload.identity"  # default
   terraform_oidc_hostname     = "app.terraform.io"       # default; set to your TFE hostname if applicable
+  terraform_token             = var.terraform_token
   
   # VCS Vars
   vcs_provider                                  = "github"

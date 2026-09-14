@@ -7,3 +7,4 @@ variable "audit_account_id" {}
 variable "aft_management_account_id" {}
 variable "ct_home_region" {}
 variable "tf_backend_secondary_region" {}
+variable "terraform_token" {}
