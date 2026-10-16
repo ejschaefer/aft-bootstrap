@@ -1,6 +1,6 @@
 module "aft" {
   source = "github.com/aws-ia/terraform-aws-control_tower_account_factory"
-  
+
   # Terraform distribution must be "tfc" or "tfe" for OIDC
   terraform_distribution = "tfc"
   terraform_org_name     = var.terraform_org_name
@@ -8,10 +8,10 @@ module "aft" {
 
   # Terraform OIDC Configuration
   terraform_oidc_integration  = true
-  terraform_oidc_aws_audience = "aws.workload.identity"  # default
-  terraform_oidc_hostname     = "app.terraform.io"       # default; set to your TFE hostname if applicable
+  terraform_oidc_aws_audience = "aws.workload.identity" # default
+  terraform_oidc_hostname     = "app.terraform.io"      # default; set to your TFE hostname if applicable
   terraform_token             = var.terraform_token
-  
+
   # VCS Vars
   vcs_provider                                  = "github"
   account_request_repo_name                     = "${var.github_username}/aft-account-request"
@@ -29,10 +29,12 @@ module "aft" {
   tf_backend_secondary_region = var.tf_backend_secondary_region
 
   # AFT Feature flags
-  aft_feature_cloudtrail_data_events               = false
-  aft_feature_enterprise_support                   = false
-  aft_feature_delete_default_vpcs_enabled          = true
+  aft_feature_cloudtrail_data_events      = false
+  aft_feature_enterprise_support          = false
+  aft_feature_delete_default_vpcs_enabled = true
 
   # AFT Additional Configurations
-  aft_enable_vpc                                   = false
+  aft_enable_vpc                 = false
+  cloudwatch_log_group_retention = 90 # "Amount of days to keep CloudWatch Log Groups for Lambda functions. 0 = Never Expire"
+  backup_recovery_point_retention = 365 # "Number of days to keep backup recovery points in AFT DynamoDB tables. Default = Never Expire"
 }
